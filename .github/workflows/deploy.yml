@@ -33,11 +33,11 @@ jobs:
 
     - name: Sed pom.xml
       run: |
-        sed -i "s/SED_GROUPID_OLD/${{ inputs.groupId_old }}/g" pom.xml
-        sed -i "s/SED_ARTIFACT_ID/${{ inputs.artifactId }}/g" pom.xml
-        sed -i "s/SED_VERSION/${{ inputs.version }}/g" pom.xml
-        sed -i "s/SED_SOURCE_URL/${{ inputs.url }}/g" pom.xml
-        sed -i "s/SED_GROUPID_NEW/${{ inputs.groupId_new }}/g" pom.xml
+        sed -i "s@SED_GROUPID_OLD@${{ inputs.groupId_old }}@g" pom.xml
+        sed -i "s@SED_ARTIFACT_ID@${{ inputs.artifactId }}@g" pom.xml
+        sed -i "s@SED_VERSION@${{ inputs.version }}@g" pom.xml
+        sed -i "s@SED_SOURCE_URL@${{ inputs.url }}@g" pom.xml
+        sed -i "s@SED_GROUPID_NEW@${{ inputs.groupId_new }}@g" pom.xml
         cat pom.xml
     
     # - name: Set up JDK OSSRH
