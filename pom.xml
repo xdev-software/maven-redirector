@@ -4,20 +4,34 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.xdev-software</groupId>
-	<artifactId>standard-maven-template-root</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<groupId>SED_GROUPID_OLD</groupId>
+	<artifactId>SED_ARTIFACT_ID</artifactId>
+	<version>SED_VERSION</version>
 	<packaging>pom</packaging>
+
+	<name>SED_ARTIFACT_ID Redirector</name>
+	<description>SED_ARTIFACT_ID Redirector</description>
+	<url>SED_SOURCE_URL</url>
+
+	<scm>
+		<url>SED_SOURCE_URL</url>
+		<connection>SED_SOURCE_URL.git</connection>
+	</scm>
+
+	<inceptionYear>2024</inceptionYear>
 
 	<organization>
 		<name>XDEV Software</name>
 		<url>https://xdev.software</url>
 	</organization>
 
-	<modules>
-		<module>standard-maven-template</module>
-		<module>standard-maven-template-demo</module>
-	</modules>
+	<developers>
+		<developer>
+			<name>XDEV Software</name>
+			<organization>XDEV Software</organization>
+			<url>https://xdev.software</url>
+		</developer>
+	</developers>
 
 	<licenses>
 		<license>
@@ -27,18 +41,85 @@
 		</license>
 	</licenses>
 
+	<repositories>
+		<!-- The order of definitions matters. Explicitly defining central here 
+			to make sure it has the highest priority. -->
+		<repository>
+			<id>central</id>
+			<url>https://repo.maven.apache.org/maven2</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<!-- The order of definitions matters. Explicitly defining central here 
+			to make sure it has the highest priority. -->
+		<pluginRepository>
+			<id>central</id>
+			<url>https://repo.maven.apache.org/maven2</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+		<relocation>
+			<groupId>SED_GROUPID_NEW</groupId>
+			<artifactId>SED_ARTIFACT_ID</artifactId>
+			<version>SED_VERSION</version>
+		</relocation>
+	</distributionManagement>
+	
 	<profiles>
 		<profile>
-			<!-- Disable checkstyle in root module as there is nothing to check -->
-			<id>checkstyle</id>
+			<id>ossrh</id>
 			<build>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-checkstyle-plugin</artifactId>
-						<version>3.3.1</version>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>3.1.0</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+								<configuration>
+									<!-- Fixes "gpg: signing failed: Inappropriate ioctl for device" -->
+									<!-- Prevent `gpg` from using pinentry programs -->
+									<gpgArguments>
+										<arg>--pinentry-mode</arg>
+										<arg>loopback</arg>
+									</gpgArguments>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					
+					<plugin>
+						<groupId>org.sonatype.plugins</groupId>
+						<artifactId>nexus-staging-maven-plugin</artifactId>
+						<version>1.6.13</version>
+						<extensions>true</extensions>
 						<configuration>
-							<skip>true</skip>
+							<serverId>ossrh</serverId>
+							<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+							<!-- Sometimes OSSRH is really slow -->
+							<stagingProgressTimeoutMinutes>30</stagingProgressTimeoutMinutes>
+							<autoReleaseAfterClose>true</autoReleaseAfterClose>
 						</configuration>
 					</plugin>
 				</plugins>
