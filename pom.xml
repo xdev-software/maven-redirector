@@ -11,11 +11,11 @@
 
 	<name>SED_ARTIFACT_ID Redirector</name>
 	<description>SED_ARTIFACT_ID Redirector</description>
-	<url>SED_SOURCE_URL</url>
+	<url>https://github.com/xdev-software/SED_ARTIFACT_ID</url>
 
 	<scm>
-		<url>SED_SOURCE_URL</url>
-		<connection>SED_SOURCE_URL.git</connection>
+		<url>https://github.com/xdev-software/SED_ARTIFACT_ID</url>
+		<connection>https://github.com/xdev-software/SED_ARTIFACT_ID.git</connection>
 	</scm>
 
 	<inceptionYear>2024</inceptionYear>

@@ -40,20 +40,20 @@ jobs:
         sed -i "s@SED_GROUPID_NEW@${{ inputs.groupId_new }}@g" pom.xml
         cat pom.xml
     
-    - name: Set up JDK OSSRH
-      uses: actions/setup-java@v4
-      with: # running setup-java again overwrites the settings.xml
-        distribution: 'temurin'
-        java-version: '17'
-        server-id: ossrh
-        server-username: MAVEN_CENTRAL_USERNAME
-        server-password: MAVEN_CENTRAL_TOKEN
-        gpg-passphrase: MAVEN_GPG_PASSPHRASE
-        gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+    # - name: Set up JDK OSSRH
+    #   uses: actions/setup-java@v4
+    #   with: # running setup-java again overwrites the settings.xml
+    #     distribution: 'temurin'
+    #     java-version: '17'
+    #     server-id: ossrh
+    #     server-username: MAVEN_CENTRAL_USERNAME
+    #     server-password: MAVEN_CENTRAL_TOKEN
+    #     gpg-passphrase: MAVEN_GPG_PASSPHRASE
+    #     gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
 
-    - name: Publish to OSSRH
-      run: mvn -B deploy -Possrh
-      env:
-        MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
-        MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
-        MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+    # - name: Publish to OSSRH
+    #   run: mvn -B deploy -Possrh
+    #   env:
+    #     MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+    #     MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
+    #     MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}

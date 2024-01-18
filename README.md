@@ -13,4 +13,3 @@ Publishes Maven redirect artifacts
   | New GroupId | ``software.xdev`` |
   | ArtifactId | ``test`` |
   | Version | ``2.0.0`` |
-  | Url | ``https://github.com/xdev-software/test`` |
