@@ -11,5 +11,6 @@ Publishes Maven redirect artifacts
   | --- | --- |
   | Old GroupId | ``com.xdev-software`` |
   | New GroupId | ``software.xdev`` |
-  | ArtifactId | ``test`` |
+  | Old ArtifactId | ``test`` |
+  | New ArtifactId | ``test-2`` |
   | Version | ``2.0.0`` |

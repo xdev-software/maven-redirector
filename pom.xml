@@ -5,17 +5,17 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>SED_GROUPID_OLD</groupId>
-	<artifactId>SED_ARTIFACT_ID</artifactId>
+	<artifactId>SED_ARTIFACT_ID_OLD</artifactId>
 	<version>SED_VERSION</version>
 	<packaging>pom</packaging>
 
-	<name>SED_ARTIFACT_ID Redirector</name>
-	<description>SED_ARTIFACT_ID Redirector</description>
-	<url>https://github.com/xdev-software/SED_ARTIFACT_ID</url>
+	<name>SED_ARTIFACT_ID_OLD Redirector</name>
+	<description>SED_ARTIFACT_ID_OLD Redirector</description>
+	<url>https://github.com/xdev-software/SED_ARTIFACT_ID_OLD</url>
 
 	<scm>
-		<url>https://github.com/xdev-software/SED_ARTIFACT_ID</url>
-		<connection>https://github.com/xdev-software/SED_ARTIFACT_ID.git</connection>
+		<url>https://github.com/xdev-software/SED_ARTIFACT_ID_OLD</url>
+		<connection>https://github.com/xdev-software/SED_ARTIFACT_ID_OLD.git</connection>
 	</scm>
 
 	<inceptionYear>2024</inceptionYear>
@@ -76,7 +76,7 @@
 		</repository>
 		<relocation>
 			<groupId>SED_GROUPID_NEW</groupId>
-			<artifactId>SED_ARTIFACT_ID</artifactId>
+			<artifactId>SED_ARTIFACT_ID_NEW</artifactId>
 			<version>SED_VERSION</version>
 		</relocation>
 	</distributionManagement>
@@ -89,7 +89,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
-						<version>3.1.0</version>
+						<version>3.2.4</version>
 						<executions>
 							<execution>
 								<id>sign-artifacts</id>

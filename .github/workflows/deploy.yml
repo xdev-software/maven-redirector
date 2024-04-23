@@ -7,13 +7,18 @@ on:
         description: 'The old/original groupId'
         required: true
         type: string
-        default: 'com.xdev-software'
+        default: 'software.xdev'
       groupId_new:
         description: 'The new groupId'
         required: true
         type: string
         default: 'software.xdev'
-      artifactId:
+      artifactId_old:
+        description: 'The old/original artifactId'
+        required: true
+        type: string
+      artifactId_new:
+        description: 'The new artifactId'
         required: true
         type: string
       version:
@@ -29,9 +34,10 @@ jobs:
     - name: Sed pom.xml
       run: |
         sed -i "s@SED_GROUPID_OLD@${{ inputs.groupId_old }}@g" pom.xml
-        sed -i "s@SED_ARTIFACT_ID@${{ inputs.artifactId }}@g" pom.xml
-        sed -i "s@SED_VERSION@${{ inputs.version }}@g" pom.xml
         sed -i "s@SED_GROUPID_NEW@${{ inputs.groupId_new }}@g" pom.xml
+        sed -i "s@SED_ARTIFACT_ID_OLD@${{ inputs.artifactId_old }}@g" pom.xml
+        sed -i "s@SED_ARTIFACT_ID_NEW@${{ inputs.artifactId_new }}@g" pom.xml
+        sed -i "s@SED_VERSION@${{ inputs.version }}@g" pom.xml
         cat pom.xml
     
     - name: Set up JDK OSSRH
@@ -40,14 +46,14 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
         server-id: ossrh
-        server-username: MAVEN_CENTRAL_USERNAME
-        server-password: MAVEN_CENTRAL_TOKEN
+        server-username: S01_OSS_SONATYPE_MAVEN_USERNAME
+        server-password: S01_OSS_SONATYPE_MAVEN_TOKEN
         gpg-passphrase: MAVEN_GPG_PASSPHRASE
         gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
 
     - name: Publish to OSSRH
       run: mvn -B deploy -Possrh
       env:
-        MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
-        MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
+        S01_OSS_SONATYPE_MAVEN_USERNAME: ${{ secrets.S01_OSS_SONATYPE_MAVEN_USERNAME }}
+        S01_OSS_SONATYPE_MAVEN_TOKEN: ${{ secrets.S01_OSS_SONATYPE_MAVEN_TOKEN }}
         MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
