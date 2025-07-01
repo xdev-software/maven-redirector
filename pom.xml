@@ -51,7 +51,7 @@
 	
 	<profiles>
 		<profile>
-			<id>sonatype-central-portal</id>
+			<id>publish-sonatype-central-portal</id>
 			<build>
 				<plugins>
 					<plugin>
