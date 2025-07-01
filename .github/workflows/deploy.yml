@@ -8,15 +8,15 @@ on:
         required: true
         type: string
         default: 'software.xdev'
+      artifactId_old:
+        description: 'The old/original artifactId'
+        required: true
+        type: string
       groupId_new:
         description: 'The new groupId'
         required: true
         type: string
         default: 'software.xdev'
-      artifactId_old:
-        description: 'The old/original artifactId'
-        required: true
-        type: string
       artifactId_new:
         description: 'The new artifactId'
         required: true
