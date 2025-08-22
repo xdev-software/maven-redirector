@@ -41,7 +41,7 @@ jobs:
         cat pom.xml
     
     - name: Set up JDK
-      uses: actions/setup-java@v4
+      uses: actions/setup-java@v5
       with: # running setup-java again overwrites the settings.xml
         distribution: 'temurin'
         java-version: '17'
